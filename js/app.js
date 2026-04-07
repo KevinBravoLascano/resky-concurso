@@ -1,16 +1,45 @@
 const bancoPreguntas = [
   {
-    pregunta: "¿Cuál fue el resultado del famoso partido España-Malta de 1983?",
-    opciones: ["10-0", "13-1", "11-1", "12-1"],
-    correcta: 3, // Es la D (12-1)
+    pregunta: " ¿En que famosa saga de videjuegos aparece el personaje Franklin Clinton? ",
+    opciones: ["Grand Theft Auto","Assasin's Creed","Pokémon","God Of War"],
+    correcta: 0,
+    dificultad:"facil",
+    imagen: null
+  },
+  {
+    pregunta: " ¿En que año ganó España su primer Mundial de Fútbol? ",
+    opciones: ["2000", "2008", "2010", "2018"],
+    correcta: 2 ,// Es la B (IlloJuan)
+    dificultad: "facil",
+    imagen: null
+  },
+  {
+    pregunta: " ¿De que videjuego es esta imagen?  ",
+    opciones: ["Lethal Company", "Stardew Valley", "Valorant", "Balatro"],
+    correcta: 3 ,// Es la B (IlloJuan)
+    dificultad: "facil",
+    imagen: "Captura4_20260407_032247_0000.png"
+  },
+  {
+    pregunta: "  ¿En qué película aparece la frase “Hakuna Matata”? ",
+    opciones: ["Aladdin", "El Rey León", "Hércules", "Tarzán"],
+    correcta: 1 ,// Es la B (IlloJuan)
     dificultad: "facil"
   },
   {
-    pregunta: "¿Quién es el streamer conocido como 'El de los quesitos'?",
-    opciones: ["Ibai", "IlloJuan", "Auronplay", "TheGrefg"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "dificil"
+    pregunta: "  ¿De que personaje es este audio?  ",
+    opciones: ["Sora", "Goomba", "Yoshi", "Enderman"],
+    correcta: 2 ,// Es la B (IlloJuan)
+    dificultad: "facil"
+  },
+  {
+    pregunta: "  ¿Qué animal es Po en Kung Fu Panda?  ",
+    opciones: ["Panda", "Tigre", "Mono", "Oso Polar"],
+    correcta: 0 ,// Es la B (IlloJuan)
+    dificultad: "facil"
   }
+
+
 ];
 // Ordenar el banco por dificultad antes de empezar
 bancoPreguntas.sort((a, b) => {
@@ -22,15 +51,37 @@ let indicePregunta = 0;
 let puntos = 0;
 
 function cargarPregunta() {
-
-
-
   const data = bancoPreguntas[indicePregunta];
   const textoPregunta = document.getElementById("pregunta-texto");
   const contenedorOpciones = document.getElementById("opciones-container");
 
+  // --- NUEVA LÓGICA DE MULTIMEDIA ---
+  const imgContenedor = document.getElementById("contenedor-imagen");
+  const imgTag = document.getElementById("pregunta-img");
+  const audioContenedor = document.getElementById("contenedor-audio");
+  const audioTag = document.getElementById("pregunta-audio");
+
+  // Control de Imagen
+  if (data.imagen) {
+    imgTag.src = data.imagen;
+    imgContenedor.style.display = "block";
+  } else {
+    imgContenedor.style.display = "none";
+  }
+
+  // Control de Audio
+  if (data.audio) {
+    audioTag.src = data.audio;
+    audioContenedor.style.display = "block";
+    audioTag.load(); // Importante para que cargue el nuevo archivo
+  } else {
+    audioContenedor.style.display = "none";
+    audioTag.pause(); // Para el sonido si pasas de largo
+  }
+  // ----------------------------------
+
   textoPregunta.innerText = data.pregunta;
-  contenedorOpciones.innerHTML = ""; // Limpiar botones viejos
+  contenedorOpciones.innerHTML = "";
 
   const letras = ["A", "B", "C", "D"];
 
