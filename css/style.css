@@ -200,6 +200,20 @@ body {
   margin-top: 20px;
   display: none; /* Oculto por defecto */
 }
+#contenedor-imagen {
+  display: flex;             /* Activa el modo caja flexible */
+  justify-content: center;   /* Centra horizontalmente */
+  align-items: center;       /* Centra verticalmente (si tuviera altura) */
+  width: 100%;               /* Que ocupe todo el ancho de la caja gris */
+  margin-bottom: 20px;       /* Espacio con la pregunta */
+}
+
+#pregunta-img {
+  max-width: 80%;            /* Para que no pegue a los bordes */
+  height: auto;              /* Mantiene la proporción */
+  border-radius: 15px;       /* Bordes redondeados */
+  border: 2px solid #ffcc00; /* El toque dorado */
+}
 
 /* Clase para cuando el tiempo se agota (se pone rojo) */
 .tiempo-critico {

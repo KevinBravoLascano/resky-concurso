@@ -4,39 +4,45 @@ const bancoPreguntas = [
     opciones: ["Grand Theft Auto","Assasin's Creed","Pokémon","God Of War"],
     correcta: 0,
     dificultad:"facil",
-    imagen: null
+    imagen: null,
+    audio: null
   },
   {
     pregunta: " ¿En que año ganó España su primer Mundial de Fútbol? ",
     opciones: ["2000", "2008", "2010", "2018"],
     correcta: 2 ,// Es la B (IlloJuan)
     dificultad: "facil",
-    imagen: null
+    imagen: null,
+    audio: null
   },
   {
     pregunta: " ¿De que videjuego es esta imagen?  ",
     opciones: ["Lethal Company", "Stardew Valley", "Valorant", "Balatro"],
     correcta: 3 ,// Es la B (IlloJuan)
     dificultad: "facil",
-    imagen: "Captura4_20260407_032247_0000.png"
+    imagen: "js/Captura4_20260407_032247_0000.png",
+    audio: null
   },
   {
     pregunta: "  ¿En qué película aparece la frase “Hakuna Matata”? ",
     opciones: ["Aladdin", "El Rey León", "Hércules", "Tarzán"],
     correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "facil"
+    dificultad: "facil",
+    audio: null
   },
   {
     pregunta: "  ¿De que personaje es este audio?  ",
     opciones: ["Sora", "Goomba", "Yoshi", "Enderman"],
     correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "facil"
+    dificultad: "facil",
+    audio: "js/saveinsta.cc_320kbps-the-super-mario-galaxy-movie-new-yoshi-scene-2026.mp3"
   },
   {
     pregunta: "  ¿Qué animal es Po en Kung Fu Panda?  ",
     opciones: ["Panda", "Tigre", "Mono", "Oso Polar"],
     correcta: 0 ,// Es la B (IlloJuan)
-    dificultad: "facil"
+    dificultad: "facil",
+    audio: null
   }
 
 
@@ -64,7 +70,7 @@ function cargarPregunta() {
   // Control de Imagen
   if (data.imagen) {
     imgTag.src = data.imagen;
-    imgContenedor.style.display = "block";
+    imgContenedor.style.display = "flex";
   } else {
     imgContenedor.style.display = "none";
   }
