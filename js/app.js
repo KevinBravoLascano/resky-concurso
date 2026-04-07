@@ -5,7 +5,8 @@ const bancoPreguntas = [
     correcta: 0,
     dificultad:"facil",
     imagen: null,
-    audio: null
+    audio: null,
+    extra: false
   },
   {
     pregunta: " ¿En que año ganó España su primer Mundial de Fútbol? ",
@@ -13,7 +14,8 @@ const bancoPreguntas = [
     correcta: 2 ,// Es la B (IlloJuan)
     dificultad: "facil",
     imagen: null,
-    audio: null
+    audio: null,
+    extra: false
   },
   {
     pregunta: " ¿De que videjuego es esta imagen?  ",
@@ -21,45 +23,158 @@ const bancoPreguntas = [
     correcta: 3 ,// Es la B (IlloJuan)
     dificultad: "facil",
     imagen: "js/Captura4_20260407_032247_0000.png",
-    audio: null
+    audio: null,
+    extra: false
   },
   {
     pregunta: "  ¿En qué película aparece la frase “Hakuna Matata”? ",
     opciones: ["Aladdin", "El Rey León", "Hércules", "Tarzán"],
     correcta: 1 ,// Es la B (IlloJuan)
     dificultad: "facil",
-    audio: null
+    imagen: null,
+    audio: null,
+    extra: false
   },
   {
     pregunta: "  ¿De que personaje es este audio?  ",
     opciones: ["Sora", "Goomba", "Yoshi", "Enderman"],
     correcta: 2 ,// Es la B (IlloJuan)
     dificultad: "facil",
-    audio: "js/saveinsta.cc_320kbps-the-super-mario-galaxy-movie-new-yoshi-scene-2026.mp3"
+    imagen: null,
+    audio: "js/saveinsta.cc_320kbps-the-super-mario-galaxy-movie-new-yoshi-scene-2026.mp3",
+    extra: false
   },
   {
     pregunta: "  ¿Qué animal es Po en Kung Fu Panda?  ",
     opciones: ["Panda", "Tigre", "Mono", "Oso Polar"],
     correcta: 0 ,// Es la B (IlloJuan)
     dificultad: "facil",
-    audio: null
+    imagen: null,
+    audio: null,
+    extra: true
+  }
+  ,
+  {
+    pregunta: "  ¿En que año se lanzó el videjuego Hollow Knight? ",
+    opciones: ["2015", "2018", "2020", "2017"],
+    correcta: 3 ,// Es la B (IlloJuan)
+    dificultad: "media",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: " ¿De que país es esta silueta?   ",
+    opciones: ["Polonia", "Alemania", "Francia", "China"],
+    correcta: 0 ,// Es la B (IlloJuan)
+    dificultad: "media",
+    imagen: "js/3ffcdc9c3bff9019401ac55f9b390bc0-silueta-estilizada-del-mapa-de-polonia.webp",
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "  ¿Cual es la línea Evolutiva del famoso Pokémon Pikachu?  ",
+    opciones: ["Achu,Pikachu,Raichu", "Pikachu,Riachu", "Pichu,Pikachu,Raichu", "no tiene otras evoluciones"],
+    correcta: 2 ,// Es la B (IlloJuan)
+    dificultad: "media",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "  ¿De que videojuego pertenece esta reseña?  ",
+    opciones: ["Stardew Valley", "Hello Neighbor", "Granny", "Resident Evil 7 Biohazard"],
+    correcta: 1 ,// Es la B (IlloJuan)
+    dificultad: "media",
+    imagen: "js/Captura5.PNG",
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "  ¿Cual es el Océano más grande?  ",
+    opciones: ["Pacifico", "Atlántico", "Mediterráneo", "Antártico"],
+    correcta: 2 ,// Es la B (IlloJuan)
+    dificultad: "media",
+    imagen: null,
+    audio: null,
+    extra: true
+  },
+  {
+    pregunta: "   ¿En la Mitología griega qué, castigo recibió Sísifo en el inframundo?  ",
+    opciones: ["Ser devorado eternamente por aves", "Empujar una roca cuesta arriba eternamente", "Estar atado a una rueda en llamas", "No poder beber ni comer nunca"],
+    correcta: 1 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "   En el mundo de los videojuegos, ¿cuál fue el primer nombre que Shigeru Miyamoto le dio al personaje de Mario antes de su debut en 'Donkey Kong'? ",
+    opciones: ["Walkman", "Jumpan", "Ossan", "Mr.video"],
+    correcta: 3 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "   En la serie 'Breaking Bad', ¿qué elemento químico de la tabla periódica aparece en los créditos iniciales pero no tiene un papel real en la química del metanfetamina? ",
+    opciones: ["Bario (Ba)", "Fósforo (P)", "Yodo(I)", "Metilo (Me)"],
+    correcta: 0 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "  ¿Cuál es el nombre del primer videojuego de la historia en incluir un 'Easter Egg' (huevo de pascua) acreditando a su programador? ",
+    opciones: ["Zork", "Adventure(Atari 2600)", "Pac-Man", "Pong"],
+    correcta: 1 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: "  En la historia del cine, ¿qué película ostenta el récord de ser la primera en utilizar CGI (imágenes generadas por ordenador) en 2D para representar la visión de un personaje? ",
+    opciones: ["Star Wars: Una nueva esperanza (1977)", "Westworld (1973) ", "Tron (1982)", "The Last Starfighter (1984)"],
+    correcta: 1 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: false
+  },
+  {
+    pregunta: " ¿Quién es la única persona que ha ganado un Premio Nobel en dos categorías científicas distintas? ",
+    opciones: ["Richard Feynman", "Linus Pauling", "Marie Curie", "Albert Einstein"],
+    correcta: 2 ,// Es la B (IlloJuan)
+    dificultad: "dificil",
+    imagen: null,
+    audio: null,
+    extra: true
   }
 
 
 ];
-// Ordenar el banco por dificultad antes de empezar
-bancoPreguntas.sort((a, b) => {
-  const orden = { "facil": 1, "media": 2, "dificil": 3 };
-  return orden[a.dificultad] - orden[b.dificultad];
-});
 
+// 1. Creamos una lista solo con las preguntas normales para el juego (extra: false)
+let preguntasJuego = bancoPreguntas.filter(p => p.extra === false);
+
+// 2. Creamos una lista aparte solo con las de reserva (extra: true)
+let preguntasReserva = bancoPreguntas.filter(p => p.extra === true);
 let indicePregunta = 0;
 let puntos = 0;
 
 function cargarPregunta() {
-  const data = bancoPreguntas[indicePregunta];
+  // Usamos la lista filtrada
+  const data = preguntasJuego[indicePregunta];
+
+  if (!data) return; // Seguridad por si se acaban las preguntas
+
   const textoPregunta = document.getElementById("pregunta-texto");
   const contenedorOpciones = document.getElementById("opciones-container");
+  // ... (aquí va el resto de tu código de imágenes y audios que ya tienes)
+
 
   // --- NUEVA LÓGICA DE MULTIMEDIA ---
   const imgContenedor = document.getElementById("contenedor-imagen");
@@ -111,11 +226,10 @@ function verificarRespuesta(seleccionado) {
   }
 
   indicePregunta++;
-  if (indicePregunta < bancoPreguntas.length) {
+  if (indicePregunta < preguntasJuego.length) {
     cargarPregunta();
-    document.getElementById("puntos").innerText = puntos;
   } else {
-    alert("¡Has terminado el concurso! Puntuación final: " + puntos);
+    alert("¡Fin del concurso! Puntos totales: " + puntos);
   }
 }
 
@@ -170,29 +284,29 @@ function usar5050() {
   btnComodin.innerText = "❌ 50:50 Usado";
 }
 function cambiarPregunta() {
-  const preguntaActual = bancoPreguntas[indicePregunta];
+  const preguntaActual = preguntasJuego[indicePregunta];
   const nivelActual = preguntaActual.dificultad;
 
-  // Buscamos en todo el banco una pregunta de repuesto
-  const repuesto = bancoPreguntas.find((p, index) =>
-    p.dificultad === nivelActual && index !== indicePregunta
-  );
+  // Buscamos en el mazo de RESERVA
+  const indiceReserva = preguntasReserva.findIndex(p => p.dificultad === nivelActual);
 
-  if (repuesto) {
-    // Reemplazamos la pregunta actual en la posición del índice por el repuesto
-    bancoPreguntas[indicePregunta] = repuesto;
+  if (indiceReserva !== -1) {
+    // Sacamos la pregunta de la reserva para que no se use dos veces
+    const repuesto = preguntasReserva.splice(indiceReserva, 1)[0];
 
-    // Volvemos a renderizar la UI
+    // Cambiamos la pregunta actual en el mazo de juego por el repuesto
+    preguntasJuego[indicePregunta] = repuesto;
+
+    // Recargamos la pantalla
     cargarPregunta();
 
-    // Desactivar botón
+    // Desactivamos el botón
     const btn = document.getElementById("btn-cambio");
     btn.disabled = true;
     btn.style.opacity = "0.3";
-
-    console.log("Pregunta cambiada por una de nivel: " + nivelActual);
+    btn.innerText = "🔄 Usado";
   } else {
-    alert("No hay más preguntas de este nivel en la base de datos.");
+    alert("No quedan preguntas de reserva para el nivel: " + nivelActual);
   }
 }
 let intervaloLlamada; // Variable global para poder detenerlo
