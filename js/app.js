@@ -2,14 +2,21 @@ const bancoPreguntas = [
   {
     pregunta: "¿Cuál fue el resultado del famoso partido España-Malta de 1983?",
     opciones: ["10-0", "13-1", "11-1", "12-1"],
-    correcta: 3 // Es la D (12-1)
+    correcta: 3, // Es la D (12-1)
+    dificultad: "facil"
   },
   {
     pregunta: "¿Quién es el streamer conocido como 'El de los quesitos'?",
     opciones: ["Ibai", "IlloJuan", "Auronplay", "TheGrefg"],
-    correcta: 1 // Es la B (IlloJuan)
+    correcta: 1 ,// Es la B (IlloJuan)
+    dificultad: "dificil"
   }
 ];
+// Ordenar el banco por dificultad antes de empezar
+bancoPreguntas.sort((a, b) => {
+  const orden = { "facil": 1, "media": 2, "dificil": 3 };
+  return orden[a.dificultad] - orden[b.dificultad];
+});
 
 let indicePregunta = 0;
 let puntos = 0;
@@ -106,25 +113,29 @@ function usar5050() {
   btnComodin.innerText = "❌ 50:50 Usado";
 }
 function cambiarPregunta() {
-  // 1. Verificamos si hay más preguntas disponibles en el array
-  if (indicePregunta + 1 < bancoPreguntas.length) {
+  const preguntaActual = bancoPreguntas[indicePregunta];
+  const nivelActual = preguntaActual.dificultad;
 
-    // 2. "Saltamos" la pregunta actual.
-    // Eliminamos la pregunta que no quisieron del array para que no se repita
-    bancoPreguntas.splice(indicePregunta, 1);
+  // Buscamos en todo el banco una pregunta de repuesto
+  const repuesto = bancoPreguntas.find((p, index) =>
+    p.dificultad === nivelActual && index !== indicePregunta
+  );
 
-    // 3. Volvemos a cargar la posición actual (que ahora tiene una pregunta nueva)
+  if (repuesto) {
+    // Reemplazamos la pregunta actual en la posición del índice por el repuesto
+    bancoPreguntas[indicePregunta] = repuesto;
+
+    // Volvemos a renderizar la UI
     cargarPregunta();
 
-    // 4. Desactivamos el comodín para que solo se use una vez
-    const btnCambio = document.getElementById("btn-cambio");
-    btnCambio.disabled = true;
-    btnCambio.style.opacity = "0.3";
-    btnCambio.innerText = "Used 🔄";
+    // Desactivar botón
+    const btn = document.getElementById("btn-cambio");
+    btn.disabled = true;
+    btn.style.opacity = "0.3";
 
-    alert("¡Pregunta cambiada!");
+    console.log("Pregunta cambiada por una de nivel: " + nivelActual);
   } else {
-    alert("No quedan más preguntas en la reserva para cambiar.");
+    alert("No hay más preguntas de este nivel en la base de datos.");
   }
 }
 let intervaloLlamada; // Variable global para poder detenerlo
