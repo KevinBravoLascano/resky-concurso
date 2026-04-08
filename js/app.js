@@ -216,7 +216,7 @@ function cargarPregunta() {
 }
 
 function verificarRespuesta(seleccionado) {
-  const correcta = bancoPreguntas[indicePregunta].correcta;
+  const correcta = preguntasJuego[indicePregunta].correcta;
 
   if (seleccionado === correcta) {
     puntos += 100;
