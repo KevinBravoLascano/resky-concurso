@@ -41,7 +41,7 @@ const bancoPreguntas = [
     correcta: 2 ,// Es la B (IlloJuan)
     dificultad: "facil",
     imagen: null,
-    audio: "js/saveinsta.cc_320kbps-the-super-mario-galaxy-movie-new-yoshi-scene-2026.mp3",
+    audio: "js/yoshi.MP3",
     extra: false
   },
   {
