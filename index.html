@@ -1,55 +1,83 @@
 <!doctype html>
 <html class="no-js" lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>El Concursillo - Juego</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-
 <div class="main-screen">
   <div class="progress-bar" id="barra-progreso">
-    <span class="step active">1</span>
-    <span class="step">2</span>
-    <span class="step">3</span>
-    <span class="step">4</span>
-    <span class="step">5</span>
+    <span class="step active">1</span><span class="step">2</span><span class="step">3</span><span class="step">4</span><span class="step">5</span>
   </div>
 
   <div class="question-box">
-    <div id="contenedor-imagen" style="display: none; margin-bottom: 20px;">
-      <img id="pregunta-img" src="" style="max-width: 100%; border-radius: 15px; border: 2px solid #ffcc00;">
+    <div id="contenedor-imagen" style="display: none;">
+      <img id="pregunta-img" src="">
     </div>
-
-    <div id="contenedor-audio" style="display: none; margin-bottom: 20px;">
-      <audio id="pregunta-audio" controls style="width: 100%;"></audio>
+    <div id="contenedor-audio" style="display: none;">
+      <audio id="pregunta-audio" controls></audio>
     </div>
-
-    <h2 id="pregunta-texto">¿Cuál es la pregunta?</h2>
+    <h2 id="pregunta-texto">Cargando pregunta...</h2>
   </div>
 
-  <div class="options-grid" id="opciones-container">
-  </div>
+  <div class="options-grid" id="opciones-container"></div>
 
   <div class="comodines-section">
     <button id="btn-5050" class="comodin-btn" onclick="usar5050()">🆘 50:50</button>
-    <button id="btn-cambio" class="comodin-btn" onclick="cambiarPregunta()">🔄 Cambiar Pregunta</button>
+    <button id="btn-cambio" class="comodin-btn" onclick="cambiarPregunta()">🔄 Cambiar</button>
     <button id="btn-llamada" class="comodin-btn" onclick="usarLlamada()">📞 Llamada</button>
   </div>
 
-  <div id="contador-llamada" class="timer-hidden">
-    Tiempo restante: <span id="segundos">60</span>s
+  <div id="contador-llamada" style="display:none;">
+    Tiempo: <span id="segundos">30</span>s
   </div>
-  <div id="puntuacion-final" style="margin-top: 20px; color: #ffcc00; font-weight: bold;">
-    Puntos: <span id="puntos">0</span>
+
+  <div id="puntuacion-final">Puntos: <span id="puntos">0</span></div>
+
+  <hr>
+
+  <div id="editor-preguntas" class="editor-container">
+    <h3>🔨 Creador de Concursos</h3>
+    <div class="form-group">
+      <input type="text" id="new-pregunta" placeholder="Pregunta">
+      <div class="opts-input">
+        <input type="text" id="new-opt0" placeholder="A">
+        <input type="text" id="new-opt1" placeholder="B">
+        <input type="text" id="new-opt2" placeholder="C">
+        <input type="text" id="new-opt3" placeholder="D">
+      </div>
+      <div class="select-group">
+        <label>Correcta:</label>
+        <select id="new-correcta">
+          <option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option>
+        </select>
+        <label>Nivel:</label>
+        <select id="new-dificultad">
+          <option value="facil">Fácil</option><option value="media">Media</option><option value="dificil">Difícil</option>
+        </select>
+        <label>¿Extra?</label>
+        <select id="new-extra">
+          <option value="false">No</option><option value="true">Sí</option>
+        </select>
+      </div>
+      <input type="text" id="new-imagen" placeholder="Imagen (img/foto.png)">
+      <input type="text" id="new-audio" placeholder="Audio (sounds/audio.mp3)">
+      <div class="botones-editor">
+        <button onclick="agregarPreguntaManual()" class="btn-add">➕ Guardar en Navegador</button>
+        <button onclick="descargarBanco()" class="btn-download">💾 Descargar JSON</button>
+      </div>
+    </div>
+  </div>
+  <div id="previsualizacion" class="preview-container">
+    <h3 style="color: #ffcc00;">📋 Preguntas Cargadas</h3>
+    <div id="lista-preguntas-guardadas">
+    </div>
+    <button onclick="resetearTodo()" class="btn-reset">🗑️ Borrar Todo y Reiniciar</button>
   </div>
 </div>
-
 <script src="js/app.js"></script>
-
 </body>
 </html>

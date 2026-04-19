@@ -1,188 +1,38 @@
-const bancoPreguntas = [
-  {
-    pregunta: " ¿En que famosa saga de videjuegos aparece el personaje Franklin Clinton? ",
-    opciones: ["Grand Theft Auto","Assasin's Creed","Pokémon","God Of War"],
-    correcta: 0,
-    dificultad:"facil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: " ¿En que año ganó España su primer Mundial de Fútbol? ",
-    opciones: ["2000", "2008", "2010", "2018"],
-    correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "facil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: " ¿De que videjuego es esta imagen?  ",
-    opciones: ["Lethal Company", "Stardew Valley", "Valorant", "Balatro"],
-    correcta: 3 ,// Es la B (IlloJuan)
-    dificultad: "facil",
-    imagen: "js/Captura4_20260407_032247_0000.png",
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿En qué película aparece la frase “Hakuna Matata”? ",
-    opciones: ["Aladdin", "El Rey León", "Hércules", "Tarzán"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "facil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿De que personaje es este audio?  ",
-    opciones: ["Sora", "Goomba", "Yoshi", "Enderman"],
-    correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "facil",
-    imagen: null,
-    audio: "js/yoshi.MP3",
-    extra: false
-  },
-  {
-    pregunta: "  ¿Qué animal es Po en Kung Fu Panda?  ",
-    opciones: ["Panda", "Tigre", "Mono", "Oso Polar"],
-    correcta: 0 ,// Es la B (IlloJuan)
-    dificultad: "facil",
-    imagen: null,
-    audio: null,
-    extra: true
-  }
-  ,
-  {
-    pregunta: "  ¿En que año se lanzó el videjuego Hollow Knight? ",
-    opciones: ["2015", "2018", "2020", "2017"],
-    correcta: 3 ,// Es la B (IlloJuan)
-    dificultad: "media",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: " ¿De que país es esta silueta?   ",
-    opciones: ["Polonia", "Alemania", "Francia", "China"],
-    correcta: 0 ,// Es la B (IlloJuan)
-    dificultad: "media",
-    imagen: "js/3ffcdc9c3bff9019401ac55f9b390bc0-silueta-estilizada-del-mapa-de-polonia.webp",
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿Cual es la línea Evolutiva del famoso Pokémon Pikachu?  ",
-    opciones: ["Achu,Pikachu,Raichu", "Pikachu,Riachu", "Pichu,Pikachu,Raichu", "no tiene otras evoluciones"],
-    correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "media",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿De que videojuego pertenece esta reseña?  ",
-    opciones: ["Stardew Valley", "Hello Neighbor", "Granny", "Resident Evil 7 Biohazard"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "media",
-    imagen: "js/Captura5.PNG",
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿Cual es el Océano más grande?  ",
-    opciones: ["Pacifico", "Atlántico", "Mediterráneo", "Antártico"],
-    correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "media",
-    imagen: null,
-    audio: null,
-    extra: true
-  },
-  {
-    pregunta: "   ¿En la Mitología griega qué, castigo recibió Sísifo en el inframundo?  ",
-    opciones: ["Ser devorado eternamente por aves", "Empujar una roca cuesta arriba eternamente", "Estar atado a una rueda en llamas", "No poder beber ni comer nunca"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "   En el mundo de los videojuegos, ¿cuál fue el primer nombre que Shigeru Miyamoto le dio al personaje de Mario antes de su debut en 'Donkey Kong'? ",
-    opciones: ["Walkman", "Jumpan", "Ossan", "Mr.video"],
-    correcta: 3 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "   En la serie 'Breaking Bad', ¿qué elemento químico de la tabla periódica aparece en los créditos iniciales pero no tiene un papel real en la química del metanfetamina? ",
-    opciones: ["Bario (Ba)", "Fósforo (P)", "Yodo(I)", "Metilo (Me)"],
-    correcta: 0 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  ¿Cuál es el nombre del primer videojuego de la historia en incluir un 'Easter Egg' (huevo de pascua) acreditando a su programador? ",
-    opciones: ["Zork", "Adventure(Atari 2600)", "Pac-Man", "Pong"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: "  En la historia del cine, ¿qué película ostenta el récord de ser la primera en utilizar CGI (imágenes generadas por ordenador) en 2D para representar la visión de un personaje? ",
-    opciones: ["Star Wars: Una nueva esperanza (1977)", "Westworld (1973) ", "Tron (1982)", "The Last Starfighter (1984)"],
-    correcta: 1 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: false
-  },
-  {
-    pregunta: " ¿Quién es la única persona que ha ganado un Premio Nobel en dos categorías científicas distintas? ",
-    opciones: ["Richard Feynman", "Linus Pauling", "Marie Curie", "Albert Einstein"],
-    correcta: 2 ,// Es la B (IlloJuan)
-    dificultad: "dificil",
-    imagen: null,
-    audio: null,
-    extra: true
-  }
+// 1. BANCO DE PREGUNTAS INICIAL (Preguntas por defecto)
+const bancoPreguntasSemilla = [
 
 
 ];
 
-// 1. Creamos una lista solo con las preguntas normales para el juego (extra: false)
-let preguntasJuego = bancoPreguntas.filter(p => p.extra === false);
+// 2. CARGA DE DATOS (LocalStorage)
+// Intentamos recuperar lo guardado, si no, usamos la semilla
+const datosLocales = localStorage.getItem("miConcursilloData");
+let bancoPreguntas = datosLocales ? JSON.parse(datosLocales) : bancoPreguntasSemilla;
 
-// 2. Creamos una lista aparte solo con las de reserva (extra: true)
+// Listas de trabajo
+let preguntasJuego = bancoPreguntas.filter(p => p.extra === false);
 let preguntasReserva = bancoPreguntas.filter(p => p.extra === true);
+
+// Variables de estado del juego
 let indicePregunta = 0;
 let puntos = 0;
+let intervaloLlamada;
 
+// 3. LÓGICA DEL JUEGO
 function cargarPregunta() {
-  // Usamos la lista filtrada
   const data = preguntasJuego[indicePregunta];
+  if (!data) {
+    alert("¡Felicidades! Has terminado todas las preguntas disponibles.");
+    return;
+  }
 
-  if (!data) return; // Seguridad por si se acaban las preguntas
+  // Actualizar UI
+  document.getElementById("puntos").innerText = puntos;
+  document.getElementById("pregunta-texto").innerText = data.pregunta;
 
-  const textoPregunta = document.getElementById("pregunta-texto");
-  const contenedorOpciones = document.getElementById("opciones-container");
-  // ... (aquí va el resto de tu código de imágenes y audios que ya tienes)
-
-
-  // --- NUEVA LÓGICA DE MULTIMEDIA ---
+  // Multimedia: Imagen
   const imgContenedor = document.getElementById("contenedor-imagen");
   const imgTag = document.getElementById("pregunta-img");
-  const audioContenedor = document.getElementById("contenedor-audio");
-  const audioTag = document.getElementById("pregunta-audio");
-
-  // Control de Imagen
   if (data.imagen) {
     imgTag.src = data.imagen;
     imgContenedor.style.display = "flex";
@@ -190,20 +40,21 @@ function cargarPregunta() {
     imgContenedor.style.display = "none";
   }
 
-  // Control de Audio
+  // Multimedia: Audio
+  const audioContenedor = document.getElementById("contenedor-audio");
+  const audioTag = document.getElementById("pregunta-audio");
   if (data.audio) {
     audioTag.src = data.audio;
     audioContenedor.style.display = "block";
-    audioTag.load(); // Importante para que cargue el nuevo archivo
+    audioTag.load();
   } else {
     audioContenedor.style.display = "none";
-    audioTag.pause(); // Para el sonido si pasas de largo
+    audioTag.pause();
   }
-  // ----------------------------------
 
-  textoPregunta.innerText = data.pregunta;
+  // Opciones
+  const contenedorOpciones = document.getElementById("opciones-container");
   contenedorOpciones.innerHTML = "";
-
   const letras = ["A", "B", "C", "D"];
 
   data.opciones.forEach((opcion, i) => {
@@ -229,123 +80,141 @@ function verificarRespuesta(seleccionado) {
   if (indicePregunta < preguntasJuego.length) {
     cargarPregunta();
   } else {
+    document.getElementById("puntos").innerText = puntos;
     alert("¡Fin del concurso! Puntos totales: " + puntos);
   }
 }
 
+// 4. COMODINES
 function usar5050() {
-  const correcta = bancoPreguntas[indicePregunta].correcta;
+  const correcta = preguntasJuego[indicePregunta].correcta;
   const botones = document.querySelectorAll(".opt-btn");
-  let eliminados = 0;
+  let incorrectos = [];
 
   botones.forEach((btn, i) => {
-    if (i !== correcta && eliminados < 2) {
-      btn.style.visibility = "hidden";
-      eliminados++;
-    }
+    if (i !== correcta) incorrectos.push(i);
   });
-  document.getElementById("btn-5050").disabled = true;
-  document.getElementById("btn-5050").style.opacity = "0.3";
+
+  // Mezclar y ocultar 2
+  incorrectos.sort(() => Math.random() - 0.5);
+  incorrectos.slice(0, 2).forEach(idx => {
+    botones[idx].style.visibility = "hidden";
+    botones[idx].disabled = true;
+  });
+
+  const btn = document.getElementById("btn-5050");
+  btn.disabled = true;
+  btn.style.opacity = "0.3";
 }
-function usar5050() {
-  // 1. Obtenemos la información de la pregunta actual
-  const preguntaActual = bancoPreguntas[indicePregunta];
-  const indiceCorrecto = preguntaActual.correcta;
 
-  // 2. Obtenemos todos los botones de opciones que hay en pantalla
-  const botones = document.querySelectorAll(".opt-btn");
-
-  // 3. Creamos una lista con los índices de las respuestas INCORRECTAS
-  let indicesIncorrectos = [];
-  botones.forEach((btn, index) => {
-    if (index !== indiceCorrecto) {
-      indicesIncorrectos.push(index);
-    }
-  });
-
-  // 4. Mezclamos los índices incorrectos aleatoriamente
-  // Usamos el truco de sort con Math.random
-  indicesIncorrectos.sort(() => Math.random() - 0.5);
-
-  // 5. Tomamos los dos primeros de la lista mezclada y los ocultamos
-  const aEliminar = indicesIncorrectos.slice(0, 2);
-
-  aEliminar.forEach(indice => {
-    // Usamos opacity o visibility para que el diseño no se mueva
-    botones[indice].style.visibility = "hidden";
-    // Opcional: Desactivarlos para que no se pueda hacer click en el hueco vacío
-    botones[indice].disabled = true;
-  });
-
-  // 6. Desactivamos el botón del comodín para que no se use otra vez
-  const btnComodin = document.getElementById("btn-5050");
-  btnComodin.disabled = true;
-  btnComodin.style.opacity = "0.3";
-  btnComodin.innerText = "❌ 50:50 Usado";
-}
 function cambiarPregunta() {
-  const preguntaActual = preguntasJuego[indicePregunta];
-  const nivelActual = preguntaActual.dificultad;
+  const nivel = preguntasJuego[indicePregunta].dificultad;
+  const idxReserva = preguntasReserva.findIndex(p => p.dificultad === nivel);
 
-  // Buscamos en el mazo de RESERVA
-  const indiceReserva = preguntasReserva.findIndex(p => p.dificultad === nivelActual);
-
-  if (indiceReserva !== -1) {
-    // Sacamos la pregunta de la reserva para que no se use dos veces
-    const repuesto = preguntasReserva.splice(indiceReserva, 1)[0];
-
-    // Cambiamos la pregunta actual en el mazo de juego por el repuesto
+  if (idxReserva !== -1) {
+    const repuesto = preguntasReserva.splice(idxReserva, 1)[0];
     preguntasJuego[indicePregunta] = repuesto;
-
-    // Recargamos la pantalla
     cargarPregunta();
 
-    // Desactivamos el botón
     const btn = document.getElementById("btn-cambio");
     btn.disabled = true;
     btn.style.opacity = "0.3";
-    btn.innerText = "🔄 Usado";
   } else {
-    alert("No quedan preguntas de reserva para el nivel: " + nivelActual);
+    alert("No quedan preguntas de reserva para este nivel.");
   }
 }
-let intervaloLlamada; // Variable global para poder detenerlo
 
 function usarLlamada() {
   const display = document.getElementById("contador-llamada");
   const textoSegundos = document.getElementById("segundos");
-  const btnLlamada = document.getElementById("btn-llamada");
+  let tiempo = 30;
 
-  let tiempoRestante = 60;
-
-  // Mostrar el contador y desactivar el botón
   display.style.display = "block";
-  btnLlamada.disabled = true;
-  btnLlamada.style.opacity = "0.3";
-
-  // Sonido opcional (puedes añadir uno de "ring ring" aquí)
+  document.getElementById("btn-llamada").disabled = true;
 
   intervaloLlamada = setInterval(() => {
-    tiempoRestante--;
-    textoSegundos.innerText = tiempoRestante;
-
-    // Si queda poco tiempo (10 seg), se pone rojo
-    if (tiempoRestante <= 10) {
-      display.classList.add("tiempo-critico");
-    }
-
-    // Cuando llega a cero
-    if (tiempoRestante <= 0) {
-      detenerCronometro();
-      alert("¡Se acabó el tiempo de la llamada!");
+    tiempo--;
+    textoSegundos.innerText = tiempo;
+    if (tiempo <= 10) display.classList.add("tiempo-critico");
+    if (tiempo <= 0) {
+      clearInterval(intervaloLlamada);
+      display.style.display = "none";
+      alert("¡Tiempo terminado!");
     }
   }, 1000);
 }
 
-function detenerCronometro() {
-  clearInterval(intervaloLlamada);
-  document.getElementById("contador-llamada").style.display = "none";
-  document.getElementById("contador-llamada").classList.remove("tiempo-critico");
+// 5. FUNCIONES DEL EDITOR (Guardado Local)
+function agregarPreguntaManual() {
+  const nuevaP = {
+    pregunta: document.getElementById("new-pregunta").value,
+    opciones: [
+      document.getElementById("new-opt0").value,
+      document.getElementById("new-opt1").value,
+      document.getElementById("new-opt2").value,
+      document.getElementById("new-opt3").value
+    ],
+    correcta: parseInt(document.getElementById("new-correcta").value),
+    dificultad: document.getElementById("new-dificultad").value,
+    extra: document.getElementById("new-extra").value === "true",
+    imagen: document.getElementById("new-imagen").value || null,
+    audio: document.getElementById("new-audio").value || null
+  };
+
+  if (!nuevaP.pregunta || !nuevaP.opciones[0]) {
+    alert("Faltan datos en la pregunta");
+    return;
+  }
+
+  // Actualizar array y LocalStorage
+  bancoPreguntas.push(nuevaP);
+  localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
+
+  // Refrescar listas de juego
+  preguntasJuego = bancoPreguntas.filter(p => !p.extra);
+  preguntasReserva = bancoPreguntas.filter(p => p.extra);
+
+  alert("¡Pregunta guardada en el navegador!");
+  actualizarPreview();
 }
-// Iniciar
+
+function descargarBanco() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bancoPreguntas, null, 2));
+  const downloadLink = document.createElement('a');
+  downloadLink.setAttribute("href", dataStr);
+  downloadLink.setAttribute("download", "banco_preguntas.json");
+  downloadLink.click();
+}
+// Función para mostrar las preguntas en pantalla
+function actualizarPreview() {
+  const contenedor = document.getElementById("lista-preguntas-guardadas");
+  contenedor.innerHTML = ""; // Limpiamos antes de redibujar
+
+  bancoPreguntas.forEach((p, index) => {
+    const div = document.createElement("div");
+    div.className = "preview-item";
+
+    // Si es extra, le ponemos una etiqueta especial
+    const badge = p.extra ? '<span class="badge-extra">EXTRA</span>' : '';
+
+    div.innerHTML = `
+      <p><strong>${index + 1}. ${p.pregunta}</strong> ${badge}</p>
+      <small>Nivel: ${p.dificultad} | Correcta: ${p.opciones[p.correcta]}</small>
+    `;
+    contenedor.appendChild(div);
+  });
+}
+
+// Función para borrar todo el LocalStorage y volver al inicio
+function resetearTodo() {
+  if (confirm("¿Estás seguro? Se borrarán todas las preguntas creadas en este navegador.")) {
+    localStorage.removeItem("miConcursilloData");
+    location.reload();
+  }
+}
+
+// MODIFICA TU FUNCIÓN agregarPreguntaManual
+// Añade esta línea al final de la función para que la lista se actualice al momento:
+// actualizarPreview();
+// Iniciar Juego
 window.onload = cargarPregunta;
