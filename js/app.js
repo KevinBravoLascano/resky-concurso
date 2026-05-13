@@ -161,7 +161,20 @@ function actualizarPreview() {
     cont.appendChild(div);
   });
 }
+function mostrarNotificacion(mensaje, tipo = 'success') {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.className = `toast ${tipo}`;
+  toast.innerHTML = `<span>${mensaje}</span>`;
 
+  container.appendChild(toast);
+
+  // Desaparecer después de 3 segundos
+  setTimeout(() => {
+    toast.classList.add("fade-out");
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
 function descargarBanco() {
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bancoPreguntas, null, 2));
   const link = document.createElement('a');
