@@ -187,10 +187,14 @@ function borrarPregunta(index) {
     bancoPreguntas.splice(index, 1);
     localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
 
+    // Refrescar listas de juego
     preguntasJuego = bancoPreguntas.filter(p => !p.extra);
     preguntasReserva = bancoPreguntas.filter(p => p.extra);
 
-    mostrarNotificacion("🗑️ Pregunta eliminada", "error");
+    if (typeof mostrarNotificacion === "function") {
+      mostrarNotificacion("Pregunta eliminada", "error");
+    }
+
     actualizarPreview();
     indicePregunta = 0;
     cargarPregunta();
@@ -201,21 +205,34 @@ function borrarPregunta(index) {
 function actualizarPreview() {
   const contenedor = document.getElementById("lista-preguntas-guardadas");
   if (!contenedor) return;
+
   contenedor.innerHTML = "";
 
   bancoPreguntas.forEach((p, index) => {
     const div = document.createElement("div");
     div.className = "preview-item";
+
+    // Usamos Flexbox directamente aquí para asegurar alineación
     div.style.display = "flex";
     div.style.justifyContent = "space-between";
     div.style.alignItems = "center";
+    div.style.padding = "10px";
+    div.style.marginBottom = "5px";
+    div.style.background = "#1d1d1d";
+    div.style.borderRadius = "8px";
+
+    const badge = p.extra ? '<span class="badge-extra">EXTRA</span>' : '';
 
     div.innerHTML = `
-      <div style="flex-grow: 1;">
-        <p><strong>${index + 1}. ${p.pregunta}</strong> ${p.extra ? '<span class="badge-extra">EXTRA</span>' : ''}</p>
-        <small>${p.dificultad} | Correcta: ${p.opciones[p.correcta]}</small>
+      <div style="flex-grow: 1; color: white;">
+        <p style="margin: 0;"><strong>${index + 1}. ${p.pregunta}</strong> ${badge}</p>
+        <small style="color: #888;">${p.dificultad} | Correcta: ${p.opciones[p.correcta]}</small>
       </div>
-      <button onclick="borrarPregunta(${index})" class="btn-borrar-single">🗑️</button>
+      <button onclick="borrarPregunta(${index})"
+              style="background: #331111; color: #ff4444; border: 1px solid #662222;
+                     padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 1.2rem;">
+        🗑️
+      </button>
     `;
     contenedor.appendChild(div);
   });
