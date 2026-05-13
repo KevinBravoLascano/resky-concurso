@@ -144,8 +144,22 @@ function usarLlamada() {
   }, 1000);
 }
 
-// 5. FUNCIONES DEL EDITOR (Guardado Local)
-function agregarPreguntaManual() {
+// Función para convertir archivos a texto (Base64)
+function archivoABase64(idElemento) {
+  return new Promise((resolve) => {
+    const file = document.getElementById(idElemento).files[0];
+    if (!file) return resolve(null);
+    const reader = new FileReader();
+    reader.onload = (e) => resolve(e.target.result);
+    reader.readAsDataURL(file);
+  });
+}
+
+async function agregarPreguntaManual() {
+  // Procesamos los archivos (si existen)
+  const imagenData = await archivoABase64("new-imagen-file");
+  const audioData = await archivoABase64("new-audio-file");
+
   const nuevaP = {
     pregunta: document.getElementById("new-pregunta").value,
     opciones: [
@@ -157,25 +171,36 @@ function agregarPreguntaManual() {
     correcta: parseInt(document.getElementById("new-correcta").value),
     dificultad: document.getElementById("new-dificultad").value,
     extra: document.getElementById("new-extra").value === "true",
-    imagen: document.getElementById("new-imagen").value || null,
-    audio: document.getElementById("new-audio").value || null
+    imagen: imagenData, // Guardamos el archivo real convertido en texto
+    audio: audioData
   };
 
   if (!nuevaP.pregunta || !nuevaP.opciones[0]) {
-    alert("Faltan datos en la pregunta");
+    alert("Maestro Kin, faltan datos esenciales en la pregunta.");
     return;
   }
 
-  // Actualizar array y LocalStorage
+  // Guardar y actualizar
   bancoPreguntas.push(nuevaP);
   localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
 
-  // Refrescar listas de juego
+  // Refrescar lógica de juego
   preguntasJuego = bancoPreguntas.filter(p => !p.extra);
   preguntasReserva = bancoPreguntas.filter(p => p.extra);
 
-  alert("¡Pregunta guardada en el navegador!");
+  alert("¡Pregunta guardada con éxito!");
   actualizarPreview();
+  limpiarFormulario();
+}
+
+function limpiarFormulario() {
+  document.getElementById("new-pregunta").value = "";
+  document.getElementById("new-opt0").value = "";
+  document.getElementById("new-opt1").value = "";
+  document.getElementById("new-opt2").value = "";
+  document.getElementById("new-opt3").value = "";
+  document.getElementById("new-imagen-file").value = "";
+  document.getElementById("new-audio-file").value = "";
 }
 
 function descargarBanco() {
