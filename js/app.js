@@ -193,6 +193,7 @@ async function agregarPreguntaManual() {
   limpiarFormulario();
 }
 
+
 function limpiarFormulario() {
   document.getElementById("new-pregunta").value = "";
   document.getElementById("new-opt0").value = "";
