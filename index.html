@@ -14,11 +14,11 @@
   </div>
 
   <div class="question-box">
-    <div id="contenedor-imagen" style="display: none; justify-content: center; margin-bottom: 15px;">
-      <img id="pregunta-img" src="" style="max-width: 100%; border-radius: 10px; max-height: 250px;">
+    <div id="contenedor-imagen" style="display: none;">
+      <img id="pregunta-img" src="">
     </div>
-    <div id="contenedor-audio" style="display: none; margin-bottom: 15px;">
-      <audio id="pregunta-audio" controls style="width: 100%;"></audio>
+    <div id="contenedor-audio" style="display: none;">
+      <audio id="pregunta-audio" controls></audio>
     </div>
     <h2 id="pregunta-texto">Cargando pregunta...</h2>
   </div>
@@ -31,15 +31,13 @@
     <button id="btn-llamada" class="comodin-btn" onclick="usarLlamada()">📞 Llamada</button>
   </div>
 
-  <div id="contador-llamada" style="display:none; text-align: center; color: #ff4444; font-weight: bold; margin: 10px;">
+  <div id="contador-llamada" style="display:none;">
     Tiempo: <span id="segundos">30</span>s
   </div>
 
-  <div id="puntuacion-final" style="text-align: center; font-size: 1.5rem; margin-top: 10px;">
-    Puntos: <span id="puntos">0</span>
-  </div>
+  <div id="puntuacion-final">Puntos: <span id="puntos">0</span></div>
 
-  <hr style="margin: 40px 0; border: 0; border-top: 1px solid #333;">
+  <hr>
 
   <div id="editor-preguntas" class="editor-container">
     <h3>🔨 Creador de Concursos</h3>
@@ -58,41 +56,37 @@
         <select id="new-correcta">
           <option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option>
         </select>
-
         <label>Nivel:</label>
         <select id="new-dificultad">
           <option value="facil">Fácil</option><option value="media">Media</option><option value="dificil">Difícil</option>
         </select>
-
         <label>¿Extra?</label>
         <select id="new-extra">
           <option value="false">No</option><option value="true">Sí</option>
         </select>
       </div>
 
-      <div style="background: #222; padding: 15px; border-radius: 10px; margin-top: 10px;">
-        <label style="font-size: 0.8rem; color: #ffcc00; display: block; margin-bottom: 5px;">Subir Imagen (Opcional):</label>
-        <input type="file" id="new-imagen-file" accept="image/*" style="margin-bottom:15px; color: #888;">
+      <div class="multimedia-inputs" style="background: #222; padding: 15px; border-radius: 10px; margin: 10px 0;">
+        <label style="font-size: 0.8rem; color: #ffcc00; display: block; margin-bottom: 5px;">Imagen de la pregunta:</label>
+        <input type="file" id="new-imagen-file" accept="image/*" style="margin-bottom:10px; width: 100%;">
 
-        <label style="font-size: 0.8rem; color: #ffcc00; display: block; margin-bottom: 5px;">Subir Audio (Opcional):</label>
-        <input type="file" id="new-audio-file" accept="audio/*" style="color: #888;">
+        <label style="font-size: 0.8rem; color: #ffcc00; display: block; margin-bottom: 5px;">Audio de la pregunta:</label>
+        <input type="file" id="new-audio-file" accept="audio/*" style="width: 100%;">
       </div>
 
-      <div class="botones-editor" style="margin-top: 20px; display: flex; gap: 10px;">
-        <button onclick="agregarPreguntaManual()" class="btn-add" style="flex: 2;">➕ Guardar en Navegador</button>
-        <button onclick="descargarBanco()" class="btn-download" style="flex: 1;">💾 Descargar JSON</button>
+      <div class="botones-editor">
+        <button onclick="agregarPreguntaManual()" class="btn-add">➕ Guardar en Navegador</button>
+        <button onclick="descargarBanco()" class="btn-download">💾 Descargar JSON</button>
       </div>
     </div>
   </div>
 
   <div id="previsualizacion" class="preview-container">
     <h3 style="color: #ffcc00;">📋 Preguntas Cargadas</h3>
-    <div id="lista-preguntas-guardadas">
-    </div>
+    <div id="lista-preguntas-guardadas"></div>
     <button onclick="resetearTodo()" class="btn-reset">🗑️ Borrar Todo y Reiniciar</button>
   </div>
 </div>
-
 <script src="js/app.js"></script>
 </body>
 </html>
