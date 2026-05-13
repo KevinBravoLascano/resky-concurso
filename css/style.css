@@ -69,7 +69,21 @@ body {
   justify-content: space-between;
   min-width: 250px;
 }
+.btn-borrar-single {
+  background: #331111;
+  color: #ff4444;
+  border: 1px solid #662222;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.2s;
+}
 
+.btn-borrar-single:hover {
+  background: #ff4444;
+  color: white;
+}
 .toast.error { border-left-color: #ff4444; }
 .toast.success { border-left-color: #28a745; }
 

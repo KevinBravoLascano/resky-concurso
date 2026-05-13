@@ -152,14 +152,55 @@ async function agregarPreguntaManual() {
 }
 
 function actualizarPreview() {
-  const cont = document.getElementById("lista-preguntas-guardadas");
-  cont.innerHTML = "";
-  bancoPreguntas.forEach((p, i) => {
+  const contenedor = document.getElementById("lista-preguntas-guardadas");
+  if (!contenedor) return;
+
+  contenedor.innerHTML = "";
+
+  bancoPreguntas.forEach((p, index) => {
     const div = document.createElement("div");
     div.className = "preview-item";
-    div.innerHTML = `<p><strong>${i+1}. ${p.pregunta}</strong> ${p.extra ? ' (EXTRA)':''}</p>`;
-    cont.appendChild(div);
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+
+    const badge = p.extra ? '<span class="badge-extra">EXTRA</span>' : '';
+
+    div.innerHTML = `
+      <div style="flex-grow: 1;">
+        <p><strong>${index + 1}. ${p.pregunta}</strong> ${badge}</p>
+        <small>Nivel: ${p.dificultad} | Correcta: ${p.opciones[p.correcta]}</small>
+      </div>
+      <button onclick="borrarPregunta(${index})" class="btn-borrar-single" title="Eliminar pregunta">
+        🗑️
+      </button>
+    `;
+    contenedor.appendChild(div);
   });
+}
+
+function borrarPregunta(index) {
+  if (confirm(`¿Seguro que quieres borrar la pregunta: "${bancoPreguntas[index].pregunta}"?`)) {
+    // 1. Eliminar del array principal
+    bancoPreguntas.splice(index, 1);
+
+    // 2. Actualizar LocalStorage
+    localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
+
+    // 3. Refrescar listas de juego
+    preguntasJuego = bancoPreguntas.filter(p => !p.extra);
+    preguntasReserva = bancoPreguntas.filter(p => p.extra);
+
+    // 4. Feedback visual
+    mostrarNotificacion("Pregunta eliminada", "error");
+
+    // 5. Refrescar UI
+    actualizarPreview();
+
+    // Si borramos la pregunta que se estaba jugando, reiniciamos el índice
+    indicePregunta = 0;
+    cargarPregunta();
+  }
 }
 function mostrarNotificacion(mensaje, tipo = 'success') {
   const container = document.getElementById("toast-container");
