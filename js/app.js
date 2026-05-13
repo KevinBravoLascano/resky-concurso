@@ -1,11 +1,7 @@
-// 1. BANCO DE PREGUNTAS INICIAL (Preguntas por defecto)
-const bancoPreguntasSemilla = [
-
-
-];
+// 1. BANCO DE PREGUNTAS INICIAL
+const bancoPreguntasSemilla = [];
 
 // 2. CARGA DE DATOS (LocalStorage)
-// Intentamos recuperar lo guardado, si no, usamos la semilla
 const datosLocales = localStorage.getItem("miConcursilloData");
 let bancoPreguntas = datosLocales ? JSON.parse(datosLocales) : bancoPreguntasSemilla;
 
@@ -22,7 +18,11 @@ let intervaloLlamada;
 function cargarPregunta() {
   const data = preguntasJuego[indicePregunta];
   if (!data) {
-    alert("¡Felicidades! Has terminado todas las preguntas disponibles.");
+    if (preguntasJuego.length === 0) {
+      document.getElementById("pregunta-texto").innerText = "No hay preguntas cargadas. ¡Usa el editor de abajo!";
+    } else {
+      alert("¡Felicidades! Has terminado todas las preguntas disponibles.");
+    }
     return;
   }
 
@@ -95,7 +95,6 @@ function usar5050() {
     if (i !== correcta) incorrectos.push(i);
   });
 
-  // Mezclar y ocultar 2
   incorrectos.sort(() => Math.random() - 0.5);
   incorrectos.slice(0, 2).forEach(idx => {
     botones[idx].style.visibility = "hidden";
@@ -144,55 +143,67 @@ function usarLlamada() {
   }, 1000);
 }
 
-// Función para convertir archivos a texto (Base64)
+// 5. FUNCIONES DEL EDITOR Y ARCHIVOS
 function archivoABase64(idElemento) {
   return new Promise((resolve) => {
-    const file = document.getElementById(idElemento).files[0];
-    if (!file) return resolve(null);
+    const input = document.getElementById(idElemento);
+    if (!input || !input.files[0]) return resolve(null);
     const reader = new FileReader();
     reader.onload = (e) => resolve(e.target.result);
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(input.files[0]);
   });
 }
 
 async function agregarPreguntaManual() {
-  // Procesamos los archivos (si existen)
-  const imagenData = await archivoABase64("new-imagen-file");
-  const audioData = await archivoABase64("new-audio-file");
+  try {
+    // Captura de datos multimedia
+    const imagenData = await archivoABase64("new-imagen-file");
+    const audioData = await archivoABase64("new-audio-file");
 
-  const nuevaP = {
-    pregunta: document.getElementById("new-pregunta").value,
-    opciones: [
-      document.getElementById("new-opt0").value,
-      document.getElementById("new-opt1").value,
-      document.getElementById("new-opt2").value,
-      document.getElementById("new-opt3").value
-    ],
-    correcta: parseInt(document.getElementById("new-correcta").value),
-    dificultad: document.getElementById("new-dificultad").value,
-    extra: document.getElementById("new-extra").value === "true",
-    imagen: imagenData, // Guardamos el archivo real convertido en texto
-    audio: audioData
-  };
+    const nuevaP = {
+      pregunta: document.getElementById("new-pregunta").value,
+      opciones: [
+        document.getElementById("new-opt0").value,
+        document.getElementById("new-opt1").value,
+        document.getElementById("new-opt2").value,
+        document.getElementById("new-opt3").value
+      ],
+      correcta: parseInt(document.getElementById("new-correcta").value),
+      dificultad: document.getElementById("new-dificultad").value,
+      extra: document.getElementById("new-extra").value === "true",
+      imagen: imagenData,
+      audio: audioData
+    };
 
-  if (!nuevaP.pregunta || !nuevaP.opciones[0]) {
-    alert("Maestro Kin, faltan datos esenciales en la pregunta.");
-    return;
+    // Validación básica
+    if (!nuevaP.pregunta || !nuevaP.opciones[0]) {
+      alert("Maestro Kin, rellena al menos la pregunta y la primera opción.");
+      return;
+    }
+
+    // Guardar en el array global
+    bancoPreguntas.push(nuevaP);
+
+    // Intentar guardar en LocalStorage
+    localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
+
+    // Actualizar listas para el juego actual
+    preguntasJuego = bancoPreguntas.filter(p => !p.extra);
+    preguntasReserva = bancoPreguntas.filter(p => p.extra);
+
+    alert("¡Pregunta guardada correctamente!");
+
+    actualizarPreview();
+    limpiarFormulario();
+
+    // Si es la primera pregunta, cargarla en el tablero
+    if (preguntasJuego.length === 1) cargarPregunta();
+
+  } catch (e) {
+    console.error(e);
+    alert("Error: Es probable que la imagen sea demasiado pesada para la memoria del navegador.");
   }
-
-  // Guardar y actualizar
-  bancoPreguntas.push(nuevaP);
-  localStorage.setItem("miConcursilloData", JSON.stringify(bancoPreguntas));
-
-  // Refrescar lógica de juego
-  preguntasJuego = bancoPreguntas.filter(p => !p.extra);
-  preguntasReserva = bancoPreguntas.filter(p => p.extra);
-
-  alert("¡Pregunta guardada con éxito!");
-  actualizarPreview();
-  limpiarFormulario();
 }
-
 
 function limpiarFormulario() {
   document.getElementById("new-pregunta").value = "";
@@ -211,16 +222,16 @@ function descargarBanco() {
   downloadLink.setAttribute("download", "banco_preguntas.json");
   downloadLink.click();
 }
-// Función para mostrar las preguntas en pantalla
+
 function actualizarPreview() {
   const contenedor = document.getElementById("lista-preguntas-guardadas");
-  contenedor.innerHTML = ""; // Limpiamos antes de redibujar
+  if (!contenedor) return;
+
+  contenedor.innerHTML = "";
 
   bancoPreguntas.forEach((p, index) => {
     const div = document.createElement("div");
     div.className = "preview-item";
-
-    // Si es extra, le ponemos una etiqueta especial
     const badge = p.extra ? '<span class="badge-extra">EXTRA</span>' : '';
 
     div.innerHTML = `
@@ -231,16 +242,15 @@ function actualizarPreview() {
   });
 }
 
-// Función para borrar todo el LocalStorage y volver al inicio
 function resetearTodo() {
-  if (confirm("¿Estás seguro? Se borrarán todas las preguntas creadas en este navegador.")) {
+  if (confirm("¿Estás seguro? Se borrarán todas las preguntas de este navegador.")) {
     localStorage.removeItem("miConcursilloData");
     location.reload();
   }
 }
 
-// MODIFICA TU FUNCIÓN agregarPreguntaManual
-// Añade esta línea al final de la función para que la lista se actualice al momento:
-// actualizarPreview();
-// Iniciar Juego
-window.onload = cargarPregunta;
+// 6. INICIO AUTOMÁTICO
+window.onload = () => {
+  actualizarPreview();
+  cargarPregunta();
+};
